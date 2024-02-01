@@ -1,0 +1,120 @@
+<div class="container pb-5">
+  <h1 class="mt-3">Create Blog Post</h1>
+
+  <form #form="ngForm" (ngSubmit)="onFormSubmit()">
+    <div class="mt-3 pb-5">
+      <!-- Guid Id   -->
+      <div class="mt-3">
+        <!-- string Title   -->
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          class="form-control"
+          [(ngModel)]="model.title"
+        />
+      </div>
+      <div class="mt-3">
+        <!-- string UrlHandle   -->
+        <label for="urlHandle" class="form-label">URL Handle</label>
+        <input
+          type="text"
+          id="UrlHandle"
+          name="UrlHandle"
+          class="form-control"
+          [(ngModel)]="model.urlHandle"
+        />
+      </div>
+      <div class="mt-3">
+        <!-- string ShortDescription    -->
+        <label for="shortDescription" class="form-label">Summary</label>
+        <input
+          type="text"
+          id="shortDescription"
+          name="shortDescription"
+          class="form-control"
+          [(ngModel)]="model.shortDescription"
+        />
+      </div>
+      <div class="mt-3">
+        <!-- string Content   -->
+        <label for="content" class="form-label">Content</label>
+        <textarea
+          id="content"
+          name="content"
+          class="form-control"
+          [(ngModel)]="model.content"
+        ></textarea>
+      </div>
+      <div class="mt-3">
+        <!-- string FeaturedImageUrl   -->
+        <label for="featuredImageUrl" class="form-label">
+          Featured Image URL
+        </label>
+        <input
+          type="text"
+          id="featuredImageUrl"
+          name="featuredImageUrl"
+          class="form-control"
+          [(ngModel)]="model.featuredImageUrl"
+        />
+      </div>
+      <div class="mt-3">
+        <!-- DateTime DatePublished   -->
+        <label for="datePublished" class="form-label">Date Published</label>
+        <input
+          type="date"
+          id="datePublished"
+          name="datePublished"
+          class="form-control"
+          value="{{ model.datePublished }}"
+          [ngModel]="model.datePublished | date : 'yyyy-MM-dd'"
+          (ngModelChange)="model.datePublished = $event"
+        />
+      </div>
+      <div class="mt-3">
+        <!-- DateTime DateUpdated   -->
+        <label for="dateUpdated" class="form-label">Date Updated</label>
+        <input
+          type="date"
+          id="dateUpdated"
+          name="dateUpdated"
+          class="form-control"
+          disabled
+          value="{{ model.dateUpdated }}"
+          [ngModel]="model.dateUpdated | date : 'yyyy-MM-dd'"
+          (ngModelChange)="model.dateUpdated = $event"
+        />
+      </div>
+      <div class="mt-3">
+        <!-- string Author   -->
+        <label for="author" class="form-label">Author</label>
+        <input
+          type="text"
+          id="author"
+          name="author"
+          class="form-control"
+          [(ngModel)]="model.author"
+        />
+      </div>
+      <div class="mt-3">
+        <!-- bool IsVisible   -->
+        <div class="form-check form-switch my-5">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            role="switch"
+            id="isVisible"
+            name="isVisible"
+            [(ngModel)]="model.isVisible"
+          />
+          <label class="form-check-label" for="isVisible">Make Viewable</label>
+        </div>
+      </div>
+      <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </form>
+</div>
