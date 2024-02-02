@@ -5,4 +5,24 @@
       >Create Blog</a
     >
   </div>
+
+  <!-- if subscribed observable has value, store in 'blogPosts' var -->
+  <ng-container *ngIf="blogPosts$ | async as blogPosts">
+    <table class="table table-striped table-bordered table-hover mt-3">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Summary</th>
+          <th>Viewable</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <tr *ngFor="let blogPost of blogPosts">
+          <td>{{ blogPost.title }}</td>
+          <td>{{ blogPost.shortDescription }}</td>
+          <td>{{ blogPost.isVisible }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
 </div>
