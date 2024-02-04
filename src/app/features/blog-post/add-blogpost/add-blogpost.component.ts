@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, Renderer2, AfterViewChecked, HostListener } from '@angular/core';
 import { AddBlogPost } from '../models/add-blog-post.model';
 import { BlogPostService } from '../services/blog-post.service';
 import { Router } from '@angular/router';
@@ -8,11 +8,16 @@ import { Router } from '@angular/router';
   templateUrl: './add-blogpost.component.html',
   styleUrls: ['./add-blogpost.component.css']
 })
-export class AddBlogpostComponent {
+export class AddBlogpostComponent implements AfterViewChecked {
   model: AddBlogPost;
+  @ViewChild('content') content!: ElementRef;
+  @ViewChild('markdownPreview') markdownPreview!: ElementRef; 
 
-  constructor(private blogPostService: BlogPostService,
-    private router: Router) {
+  constructor(
+    private blogPostService: BlogPostService,
+    private router: Router,
+    private renderer: Renderer2
+    ) {
     this.model = {
       title: '', 
       shortDescription: '',
@@ -24,6 +29,21 @@ export class AddBlogpostComponent {
       datePublished: new Date(),
       dateUpdated: new Date()
     }
+    console.log('constructor executed');
+  }
+
+  ngAfterViewChecked() {
+    this.matchDivHeightToTextarea();
+  }
+
+  @HostListener('window:mouseup')
+  onResize(textarea: HTMLTextAreaElement) {
+    this.matchDivHeightToTextarea();
+  }
+
+  matchDivHeightToTextarea() {
+    const textareaHeight = this.content.nativeElement.scrollHeight;
+    this.renderer.setStyle(this.markdownPreview.nativeElement, 'height', `${textareaHeight}px`);
   }
 
   onFormSubmit(): void {

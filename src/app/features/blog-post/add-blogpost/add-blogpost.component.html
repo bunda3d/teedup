@@ -37,21 +37,54 @@
           [(ngModel)]="model.shortDescription"
         />
       </div>
-      <div class="mt-3">
+      <div class="container-fluid gx-0">
         <!-- string Content   -->
-        <label for="content" class="form-label">Content</label>
-        <textarea
-          id="content"
-          name="content"
-          class="form-control"
-          [(ngModel)]="model.content"
-        ></textarea>
+        <!-- https://www.markdownguide.org/basic-syntax/ -->
+        <div class="row">
+          <div class="col-md-6 mt-3">
+            <label for="content" class="form-label"
+              >Content
+              <a
+                href="https://www.markdownguide.org/basic-syntax/"
+                class="link-icon link-underline link-underline-primary link-opacity-75 link-opacity-100-hover"
+                target="_blank"
+                title="markdown reference guide"
+                ><i class="bi bi-link-45deg"></i></a
+            ></label>
+            <textarea
+              #content
+              name="content"
+              id="content"
+              class="form-control"
+              (input)="matchDivHeightToTextarea()"
+              [(ngModel)]="model.content"
+            ></textarea>
+          </div>
+          <div class="col-md-6 mt-3">
+            <label for="preview" class="form-label">Markdown Preview</label>
+            <div #markdownPreview id="markdownPreview" class="p-1">
+              <markdown
+                [data]="model.content"
+                id="preview"
+                lineNumbers
+                ngPreserveWhitespaces
+              ></markdown>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="mt-3">
         <!-- string FeaturedImageUrl   -->
         <label for="featuredImageUrl" class="form-label">
           Featured Image URL
         </label>
+
+        <ng-container *ngIf="model.featuredImageUrl !== ''">
+          <div>
+            <img [src]="model.featuredImageUrl" height="100" class="my-2" />
+          </div>
+        </ng-container>
+
         <input
           type="text"
           id="featuredImageUrl"

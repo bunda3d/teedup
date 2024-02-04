@@ -1,0 +1,12 @@
+#markdownPreview {
+  border-color: lightgray;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: .375rem;
+  overflow-y: scroll;
+}
+textarea#content {
+  min-height: 20rem; 
+  max-height: 50rem;
+  resize:vertical;
+}
