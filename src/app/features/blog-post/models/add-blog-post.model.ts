@@ -8,4 +8,5 @@ export interface AddBlogPost {
   datePublished: Date;
   dateUpdated: Date;
   isVisible: boolean;
+  categories: string[];
 }
