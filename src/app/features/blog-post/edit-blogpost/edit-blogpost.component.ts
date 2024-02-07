@@ -22,6 +22,7 @@ export class EditBlogpostComponent implements OnInit, AfterViewChecked, OnDestro
   routeSubscription?: Subscription;
   getBlogPostSubscription?: Subscription;
   updateBlogPostSubscription?: Subscription;
+  deleteBlogPostSubscription?: Subscription;
 
 
   @ViewChild('content') content!: ElementRef;
@@ -98,9 +99,23 @@ export class EditBlogpostComponent implements OnInit, AfterViewChecked, OnDestro
     }
   }
 
+  onDelete(): void {
+    if (this.id) {
+      //call service to delete blog
+      this.deleteBlogPostSubscription = this.blogPostService
+        .deleteBlogPost(this.id)
+        .subscribe({
+          next: (response) => {
+            this.router.navigateByUrl('/admin/blogposts');
+        }
+      })
+    }
+  }
+
   ngOnDestroy(): void {
     this.routeSubscription?.unsubscribe();
     this.getBlogPostSubscription?.unsubscribe();
     this.updateBlogPostSubscription?.unsubscribe();
+    this.deleteBlogPostSubscription?.unsubscribe();
   }
 }
