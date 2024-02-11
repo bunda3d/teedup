@@ -18,6 +18,7 @@ export class EditBlogpostComponent implements OnInit, AfterViewChecked, OnDestro
   model?: BlogPost;
   categories$?: Observable<Category[]>;
   selectedCategories?: string[];
+  isImageSelectorVisible: boolean = false;
 
   routeSubscription?: Subscription;
   getBlogPostSubscription?: Subscription;
@@ -110,6 +111,13 @@ export class EditBlogpostComponent implements OnInit, AfterViewChecked, OnDestro
         }
       })
     }
+  }
+
+  openImageSelector(): void {
+    this.isImageSelectorVisible = true;
+  }
+  closeImageSelector(): void {
+    this.isImageSelectorVisible = false;
   }
 
   ngOnDestroy(): void {

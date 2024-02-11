@@ -79,6 +79,13 @@
           <!-- string FeaturedImageUrl   -->
           <label for="featuredImageUrl" class="form-label">
             Featured Image URL
+            <button
+              type="button"
+              class="btn btn-light"
+              (click)="openImageSelector()"
+            >
+              Upload Image
+            </button>
           </label>
 
           <ng-container *ngIf="model.featuredImageUrl !== ''">
@@ -175,4 +182,22 @@
       </div>
     </form>
   </ng-container>
+</div>
+
+<div
+  class="images-container-modal"
+  [ngClass]="{
+    'd-block': isImageSelectorVisible,
+    'd-none': !isImageSelectorVisible
+  }"
+>
+  <button
+    type="button"
+    id="modal-close-btn"
+    class="btn btn-light"
+    (click)="closeImageSelector()"
+  >
+    X
+  </button>
+  <app-image-selector></app-image-selector>
 </div>
