@@ -78,15 +78,17 @@
         <div class="mt-3">
           <!-- string FeaturedImageUrl   -->
           <label for="featuredImageUrl" class="form-label">
-            Featured Image URL
+            Featured Image URL &nbsp;
+          </label>
+          <div>
             <button
               type="button"
-              class="btn btn-light"
+              class="btn btn-light border"
               (click)="openImageSelector()"
             >
-              Upload Image
+              Select Image
             </button>
-          </label>
+          </div>
 
           <ng-container *ngIf="model.featuredImageUrl !== ''">
             <div>

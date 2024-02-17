@@ -1,0 +1,11 @@
+.all-imgs {
+  overflow-y: scroll;
+}
+img.preview {
+  height: 8rem
+}
+div.preview {
+  min-width: 8rem;
+  justify-content: center;
+  cursor: pointer;
+}

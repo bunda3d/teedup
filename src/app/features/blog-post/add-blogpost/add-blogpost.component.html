@@ -78,7 +78,15 @@
         <label for="featuredImageUrl" class="form-label">
           Featured Image URL
         </label>
-
+        <div>
+          <button
+            type="button"
+            class="btn btn-light border"
+            (click)="openImageSelector()"
+          >
+            Select Image
+          </button>
+        </div>
         <ng-container *ngIf="model.featuredImageUrl !== ''">
           <div>
             <img [src]="model.featuredImageUrl" height="100" class="my-2" />
@@ -169,4 +177,22 @@
       </div>
     </div>
   </form>
+</div>
+
+<div
+  class="images-container-modal"
+  [ngClass]="{
+    'd-block': isImageSelectorVisible,
+    'd-none': !isImageSelectorVisible
+  }"
+>
+  <button
+    type="button"
+    id="modal-close-btn"
+    class="btn btn-light"
+    (click)="closeImageSelector()"
+  >
+    X
+  </button>
+  <app-image-selector></app-image-selector>
 </div>
